@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/first-angular-app",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -30,7 +31,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "bulma/css/bulma.css",
+              "@fortawesome/fontawesome-free/css/all.css",
+              "src/styles/index.scss"
             ]
           },
           "configurations": {
@@ -91,6 +94,9 @@
               "src/styles.scss"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
