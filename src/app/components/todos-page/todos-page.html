@@ -1,0 +1,41 @@
+<div class="todoapp">
+  <h1 class="todoapp__title">todos</h1>
+
+  <div class="todoapp__content">
+    <header class="todoapp__header">
+      <button
+        type="button"
+        class="todoapp__toggle-all"
+        data-cy="ToggleAllButton"
+      ></button>
+
+      <app-todo-form (save)="addTodo($event)"></app-todo-form>
+
+    </header>
+
+    <section class="todoapp__main" data-cy="TodoList">
+      @for (todo of visibleTodos$ | async; track todo.id; let i = $index) {
+      <app-todo
+        [todo]="todo"
+        (delete)="deleteTodo(todo)"
+        (rename)="renameTodo(todo, $event)"
+        (toggle)="toggleTodo(todo)"
+      ></app-todo>
+      }
+    </section>
+
+    <footer class="todoapp__footer" data-cy="Footer">
+      <span class="todo-count" data-cy="TodosCounter">
+        {{activeCount$ | async}} items left
+      </span>
+
+      <app-filter></app-filter>
+
+      <button type="button" class="todoapp__clear-completed" data-cy="ClearCompletedButton">
+        Clear completed
+      </button>
+    </footer>
+  </div>
+
+  <app-error-message></app-error-message>
+</div>
